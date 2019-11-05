@@ -1,0 +1,15 @@
+//root-project
+ext {
+
+    supportLibraryVersion = "25.3.1"
+    lombokVersion = "1.12.6"
+
+    libs = [
+            appCompat              : 'androidx.appcompat:appcompat:1.0.0',
+            lombok                 : "org.projectlombok:lombok:$lombokVersion",//use provided
+            support                : "com.android.support:support-v13:$supportLibraryVersion",
+            design                 : 'com.google.android.material:material:1.0.0'
+
+
+    ]
+}

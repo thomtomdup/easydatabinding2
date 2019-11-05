@@ -1,0 +1,38 @@
+apply plugin: 'com.jfrog.bintray'
+
+group 'com.thomtomdup.easydatabinding2'
+version '2.0.0'
+
+project.ext {
+    mavGitUrl = 'https://github.com/thomtomdup/easydatabinding2.git'
+    mavProjectName = 'Easydatabinding2'
+    mavLibraryLicenses = ["Apache-2.0":'http://www.apache.org/licenses/LICENSE-2.0.txt']
+    mavLibraryDescription = "Easydatabinding2 base from easydatabinding of Joxad"
+    mavPublishToMavenLocal = true
+    mavSiteUrl = 'https://github.com/thomtomdup/easydatabinding2'
+}
+
+def properties = new Properties()
+properties.load(new FileInputStream("gradle.properties"))
+
+bintray {
+    user = properties.getProperty("BINTRAY_USER")
+    key = properties.getProperty("BINTRAY_API_KEY")
+    publications = ['Production']
+    configurations = ['archives']
+    override = true
+    pkg {
+        repo = 'maven'
+        name = 'Easydatabinding2'
+        description = "Easydatabinding2 base from Easydatabinding2 of joxad"
+        publicDownloadNumbers = true
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/thomtomdup/easydatabinding2'
+        version {
+            name = this.version
+            desc = "Version ${this.version}"
+            released = new Date()
+            vcsTag = this.version
+        }
+    }
+}

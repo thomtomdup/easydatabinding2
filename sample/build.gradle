@@ -1,0 +1,48 @@
+apply plugin: 'com.android.application'
+allprojects {
+    tasks.withType(JavaCompile) {
+        options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+    }
+}
+android {
+    signingConfigs {
+        release {
+            storeFile file('/Users/MacIOS/Documents/Android/easydatabinding-master/release')
+            storePassword 'ze23usxy'
+            keyAlias = 'thomtomdup'
+            keyPassword 'ze23usxy'
+        }
+    }
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
+
+    dataBinding { enabled = true }
+    defaultConfig {
+        applicationId "joxad.easydatabinding.sample"
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 1
+        versionName "2.0.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.6.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:3.1.1'
+    implementation 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:3.1.1'
+
+    implementation project(path: ':lib')
+}
+
